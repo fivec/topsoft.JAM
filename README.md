@@ -30,6 +30,23 @@
   - [ProcessExtAn](#processextan)
   - [RUnicode](#runicode)
   - [GETMCNAME](#getmcname)
+  - [__init__](#__init__)
+  - [NeedCopyKodAsuToBarkod2, NeedCopyKodAsuToBarkod, NeedCopyGost, NeedCopyOKVED, NeedSendEmail, NeedCopyNameToMemo, HistOnlyErrors, CopyGOSTtoObozn, CopyGOSTtoAllMemo, UpdateOnlyOneMC](#needcopykodasu_to_barkod2_needcopykodasu_to_barkod_needcopygost_needcopyokved_needsendemail_needcopynametomemo_histonlyerrors_copygosttoobozn_copygosttoallmemo_updateonlyonemc)
+  - [GetVersion](#getversion)
+  - [CheckDiskr](#checkdiskr)
+  - [GetNextAnKod](#getnextankod)
+  - [GetUserAnByCode](#getuseranbycode)
+  - [GetAnName](#getanname)
+  - [GetKodAnFormAttr](#getkodanformattr)
+  - [GetAnNum](#getannum)
+  - [ParseShbdVal](#parseshbdval)
+  - [FindAnVal](#findanval)
+  - [GetLastVNameNum](#getlastvnamenum)
+  - [GenerateBarKod](#generatebarkod)
+  - [GetMcCursor](#getmccursor)
+  - [ProcessManyByOneKod](#processmanybyonekod)
+  - [FillAnLinks](#fillanlinks)
+  - [CheckCodsRef](#checkcodsref)
   - ... (другие функции будут добавлены ниже)
 
 ---
@@ -601,4 +618,107 @@ flowchart TD
 
 ---
 
-// Далее будут добавлены остальные функции и процедуры по аналогии. 
+## Прочие функции и процедуры
+
+### __init__
+**Назначение:**
+Инициализация переменных пакета, установка параметров по умолчанию, подготовка глобальных переменных для работы всех функций пакета.
+
+---
+
+### NeedCopyKodAsuToBarkod2, NeedCopyKodAsuToBarkod, NeedCopyGost, NeedCopyOKVED, NeedSendEmail, NeedCopyNameToMemo, HistOnlyErrors, CopyGOSTtoObozn, CopyGOSTtoAllMemo, UpdateOnlyOneMC
+**Назначение:**
+Функции-флаги, возвращающие true/false в зависимости от битовых флагов ImportDopFlag. Управляют дополнительными опциями импорта (копирование полей, отправка email, режимы истории, и т.д.).
+
+---
+
+### GetVersion
+**Назначение:**
+Возвращает версию пакета (cgPackageVersion).
+
+---
+
+### CheckDiskr
+**Назначение:**
+Проверяет корректность значения "дискретности" единицы измерения. Если значение вне диапазона — возвращает 2.
+
+---
+
+### GetNextAnKod
+**Назначение:**
+Вычисляет следующий свободный код значения аналитики по коду аналитики.
+
+---
+
+### GetUserAnByCode
+**Назначение:**
+Ищет ссылку на значение аналитики по коду аналитики и коду значения. Если не найдено — возвращает 0.
+
+---
+
+### GetAnName
+**Назначение:**
+Возвращает наименование аналитики по её коду.
+
+---
+
+### GetKodAnFormAttr
+**Назначение:**
+Возвращает код аналитики, привязанной к атрибуту (по nrec атрибута).
+
+---
+
+### GetAnNum
+**Назначение:**
+Возвращает порядковый номер аналитики в шаблоне по её коду.
+
+---
+
+### ParseShbdVal
+**Назначение:**
+Извлекает текстовое значение аналитики из записи МЦ по коду аналитики. Используется для парсинга значений из внешней системы.
+
+---
+
+### FindAnVal
+**Назначение:**
+Находит ссылку на значение аналитики по параметрам (код, текст, родитель и т.д.).
+
+---
+
+### GetLastVNameNum
+**Назначение:**
+Возвращает последний использованный номер варианта наименования для МЦ.
+
+---
+
+### GenerateBarKod
+**Назначение:**
+Генерирует штрихкод для МЦ с учетом префикса и постфикса из настроек.
+
+---
+
+### GetMcCursor
+**Назначение:**
+Возвращает курсор для перебора МЦ по коду (barkod, barkod2 или атрибут).
+
+---
+
+### ProcessManyByOneKod
+**Назначение:**
+Обрабатывает все МЦ с одним и тем же кодом (баркодом), вызывая INSERTMC для каждой.
+
+---
+
+### FillAnLinks
+**Назначение:**
+Заполняет массив ссылок на аналитики из настроек параметров импорта. Используется для ускорения поиска аналитик.
+
+---
+
+### CheckCodsRef
+**Назначение:**
+Проверяет наличие кода ОКДП в справочнике ОКДП, при необходимости пишет в историю ошибку или предупреждение.
+
+---
+
